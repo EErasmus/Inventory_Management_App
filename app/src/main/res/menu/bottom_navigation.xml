@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragmentWishlist"
+        android:icon="@drawable/ic_wish_list"
+        android:title="Wishlist"/>
+
+    <item
+        android:id="@+id/fragmentInventory"
+        android:icon="@drawable/ic_inventory"
+        android:title="Inventory"/>
+
+    <item
+        android:title=""/>
+
+    <item
+        android:id="@+id/fragmentAlerts"
+        android:icon="@drawable/ic_alerts"
+        android:title="Alerts"/>
+
+    <item
+        android:id="@+id/fragmentProfile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile"/>
+
+</menu>

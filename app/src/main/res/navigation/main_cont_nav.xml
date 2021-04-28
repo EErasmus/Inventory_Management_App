@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_cont_nav"
+    app:startDestination="@id/fragmentInventory">
+    <fragment
+        android:id="@+id/fragmentInventory"
+        android:name="com.example.inventorymanagementapp.FragmentInventory"
+        android:label="fragment_inventory"
+        tools:layout="@layout/fragment_inventory" />
+    <fragment
+        android:id="@+id/fragmentWishlist"
+        android:name="com.example.inventorymanagementapp.FragmentWishlist"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+    <fragment
+        android:id="@+id/fragmentAlerts"
+        android:name="com.example.inventorymanagementapp.FragmentAlerts"
+        android:label="fragment_alerts"
+        tools:layout="@layout/fragment_alerts" />
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.example.inventorymanagementapp.FragmentProfile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
