@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 rootNode = FirebaseDatabase.getInstance();
                 refs = rootNode.getReference("users");
-                Query checkUser = refs.orderByChild("name").equalTo(username);
+                Query checkUser = refs.orderByChild("contactNumber").equalTo(username);
                 checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
