@@ -1,8 +1,10 @@
 package com.example.inventorymanagementapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.content.Intent;
+import android.webkit.MimeTypeMap;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 import android.net.Uri;
@@ -29,6 +39,8 @@ public class AddItem extends AppCompatActivity {
 
     FirebaseDatabase rootNode;
     DatabaseReference refs;
+    StorageReference mStorageRef;
+    StorageTask mUploadTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +76,31 @@ public class AddItem extends AppCompatActivity {
                 quantityVal = Integer.parseInt(quantity.getText().toString());
                 alertQVal = Integer.parseInt(alertQuantity.getText().toString());
                 priceVal = Integer.parseInt(price.getText().toString());
-                String uniqueId = UUID.randomUUID().toString();
+                String uniqueId = UUID.randomUUID().toString() + imgUri != null ? "." + getFileExtension(imgUri) : "";
                 InventoryHelper inventory = new InventoryHelper(nameVal, descVal, quantityVal, 1, alertQVal, priceVal,uniqueId);
                 refs.child(uniqueId).setValue(inventory);
+                if (imgUri != null) {
+                    mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+                    StorageReference fileReference = mStorageRef.child(uniqueId + "." + getFileExtension(imgUri));
+                    mUploadTask =  fileReference.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            String uploadPath = taskSnapshot.getUploadSessionUri().toString();
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            String ex = e.getMessage().toString();
+
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                        }
+                    });
+                }
 
                 name.setText("");
                 desc.setText("");
@@ -77,6 +111,13 @@ public class AddItem extends AppCompatActivity {
             });
 
     }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
