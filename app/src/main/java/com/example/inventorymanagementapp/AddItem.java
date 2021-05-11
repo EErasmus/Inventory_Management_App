@@ -89,6 +89,7 @@ public class AddItem extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             imgUri = data.getData();
+            imgViewer.setImageURI(imgUri);
            // Picasso.with(this).load(mImageUri).into(mImageView);
         }
     }
