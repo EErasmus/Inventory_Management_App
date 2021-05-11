@@ -48,6 +48,11 @@ public class AddToWishlist extends AppCompatActivity {
                 String uniqueId = UUID.randomUUID().toString();
                 InventoryHelper inventory = new InventoryHelper(nameVal, descVal, quantityVal, 2, 0, priceVal,uniqueId);
                 refs.child(uniqueId).setValue(inventory);
+
+                name.setText("");
+                desc.setText("");
+                quantity.setText("");
+                price.setText("");
             }
         });
     }

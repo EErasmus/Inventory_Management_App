@@ -1,8 +1,12 @@
 package com.example.inventorymanagementapp;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class UserHelper {
     String name;
 
+    public UserHelper(){}
     public UserHelper(String name, String password, String contact) {
         this.name = name;
         this.password = password;
@@ -35,4 +39,22 @@ public class UserHelper {
 
     String password;
     String contactNumber;
+
+    public HashMap<String, InventoryHelper> inventory, wishlist;
+
+    public HashMap<String, InventoryHelper> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(HashMap<String, InventoryHelper> inventory) {
+        this.inventory = inventory;
+    }
+
+    public HashMap<String, InventoryHelper> getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(HashMap<String, InventoryHelper> wishlist) {
+        this.wishlist = wishlist;
+    }
 }

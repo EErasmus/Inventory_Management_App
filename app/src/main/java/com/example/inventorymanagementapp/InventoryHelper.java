@@ -8,6 +8,8 @@ public class InventoryHelper {
     Integer quantity;
     Integer type;
 
+    public InventoryHelper(){}
+
 
     public InventoryHelper(String name, String description, Integer quantity, Integer type, Integer alertQuantity, Integer price, String id) {
         this.name = name;

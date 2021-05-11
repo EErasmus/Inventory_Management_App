@@ -24,6 +24,17 @@ import javax.crypto.spec.SecretKeySpec;
 import androidx.annotation.RequiresApi;
 
 public class Utility {
+
+    public static UserHelper getAuthenticatedUser() {
+        return authenticatedUser;
+    }
+
+    public static void setAuthenticatedUser(UserHelper authenticatedUser) {
+        Utility.authenticatedUser = authenticatedUser;
+    }
+
+    public static UserHelper authenticatedUser;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String encrypt(String algorithm, String input, SecretKey key,
                                  IvParameterSpec iv) throws NoSuchPaddingException, NoSuchAlgorithmException,
