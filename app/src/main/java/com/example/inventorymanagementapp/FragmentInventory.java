@@ -61,6 +61,11 @@ public class FragmentInventory extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        UserHelper currentUser = Utility.getAuthenticatedUser();
+        currentUser.inventory.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        });
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_inventory, container, false);
 

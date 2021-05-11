@@ -59,6 +59,10 @@ public class FragmentWishlist extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        UserHelper currentUser = Utility.getAuthenticatedUser();
+        currentUser.wishlist.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        });
         return inflater.inflate(R.layout.fragment_wishlist, container, false);
     }
 }

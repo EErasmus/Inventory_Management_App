@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainContentActivity extends AppCompatActivity {
 
     FloatingActionButton mainActionBtn;
+    private boolean ifWishlistScreen = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,9 @@ public class MainContentActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainContentActivity.this, AddItem.class);
+                if (ifWishlistScreen) {
+                    intent = new Intent(MainContentActivity.this, AddToWishlist.class);
+                }
                 startActivity(intent);
             }
         });
@@ -50,9 +54,11 @@ public class MainContentActivity extends AppCompatActivity {
                     switch (item.getItemId()){
                         case R.id.fragmentWishlist:
                             selectedFragment = new FragmentWishlist();
+                            ifWishlistScreen = true;
                             break;
                         case R.id.fragmentInventory:
                             selectedFragment = new FragmentInventory();
+                            ifWishlistScreen = false;
                             break;
                         case R.id.fragmentAlerts:
                             selectedFragment = new FragmentAlerts();
