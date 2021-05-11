@@ -5,8 +5,11 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +17,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class FragmentProfile extends Fragment {
+
+    TextView name, email, dob, contact;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,12 +58,23 @@ public class FragmentProfile extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        final View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        name = rootView.findViewById(R.id.textView11);
+        email = rootView.findViewById(R.id.textView13);
+        dob = rootView.findViewById(R.id.textView14);
+        contact = rootView.findViewById(R.id.textView15);
+        UserHelper curUser = Utility.getAuthenticatedUser();
+        name.setText(curUser.name);
+        email.setText(curUser.name);
+        contact.setText(curUser.contactNumber);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return rootView;
     }
 }
