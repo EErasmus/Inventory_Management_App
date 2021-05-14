@@ -14,6 +14,7 @@
         android:id="@+id/textView15"
         android:layout_width="310dp"
         android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="232dp"
         android:background="@drawable/input_field"
         android:text="Phone number"
@@ -23,22 +24,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.947" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="310dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/input_field"
-        android:text="Date of birth"
-        android:textColor="@color/gray"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView13"
@@ -101,7 +88,7 @@
         android:id="@+id/logoutBtn"
         android:layout_width="163dp"
         android:layout_height="53dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button"
         android:fontFamily="sans-serif-light"
         android:text="Logout"
@@ -117,6 +104,7 @@
         android:id="@+id/deactivateBtn"
         android:layout_width="163dp"
         android:layout_height="53dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button"
         android:fontFamily="sans-serif-light"
         android:text="Deactivate"
@@ -126,5 +114,5 @@
         app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

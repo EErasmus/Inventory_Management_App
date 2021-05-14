@@ -18,7 +18,7 @@ import android.widget.TextView;
  */
 public class FragmentProfile extends Fragment {
 
-    TextView name, email, dob, contact;
+    TextView name, email, contact;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,7 +68,6 @@ public class FragmentProfile extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         name = rootView.findViewById(R.id.textView11);
         email = rootView.findViewById(R.id.textView13);
-        dob = rootView.findViewById(R.id.textView14);
         contact = rootView.findViewById(R.id.textView15);
         UserHelper curUser = Utility.getAuthenticatedUser();
         name.setText(curUser.name);

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentInventory"
-    android:background="@drawable/background_2">
+    android:background="@drawable/background_2"
+    tools:context=".FragmentInventory">
 
 
     <TextView
@@ -20,21 +20,20 @@
         app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.108" />
 
-    <LinearLayout
+
+    <ListView
+        android:id="@+id/listView_Inv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_height="560dp"
+        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.672" />
 
-        <ListView
-            android:id="@+id/listViewtxt_Inv"
-            android:layout_width="match_parent"
-            android:layout_height="510dp" />
 
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
