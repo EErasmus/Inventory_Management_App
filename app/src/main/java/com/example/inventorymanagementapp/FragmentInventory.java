@@ -1,10 +1,13 @@
 package com.example.inventorymanagementapp;
 
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +17,17 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.Attributes;
@@ -80,9 +87,8 @@ public class FragmentInventory extends Fragment {
 
     int[] images = {R.drawable.ic_thumbnail, R.drawable.ic_thumbnail};
 
-    ArrayList<String> names = new ArrayList<String >();
-    ArrayList<String> images1 = new ArrayList<String >();
-    String[] Names = {"Test Item 1", "Test Item 2"};
+    ArrayList<String> keys;
+    UserHelper currentUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,13 +96,16 @@ public class FragmentInventory extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inventory, container, false);
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
-        UserHelper currentUser = Utility.getAuthenticatedUser();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        currentUser = Utility.getAuthenticatedUser();
         int index = 0;
-        currentUser.inventory.entrySet().forEach(entry -> {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-            names.add(entry.getValue().name);
-            images1.add(entry.getKey().toString());
-        });
+//        currentUser.inventory.entrySet().forEach(entry -> {
+//            System.out.println(entry.getKey() + " " + entry.getValue());
+//            keys.add(entry.getKey().toString());
+//        });
+        keys = new ArrayList<String>(currentUser.inventory.keySet());
 
         mListView = view.findViewById(R.id.listView_Inv);
 
@@ -112,7 +121,7 @@ public class FragmentInventory extends Fragment {
 
         @Override
         public int getCount() {
-            return images1.size();
+            return keys.size();
         }
 
         @Override
@@ -134,17 +143,33 @@ public class FragmentInventory extends Fragment {
             TextView mTextView = view.findViewById(R.id.textView_Inv);
 
             //mImageView.setImageResource(images1.get(position));
-            mTextView.setText(names.get(position));
+            InventoryHelper item = currentUser.inventory.get(keys.get(position));
+            item.id = keys.get(position);
+            mTextView.setText(item.name);
 
             //imgViewer.setImageURI(imgUri);
-
-
-//            mStorageRef.child("uploads/" + images1.get(position)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                @Override
-//                public void onSuccess(Uri uri) {
-//                    mImageView.setImageURI (uri.toString());
-//                }
-//            });
+            String imageFileExt = item.id.split("_").length > 1 ?
+                    item.id.split("_")[1] : "";
+            if (imageFileExt != "") {
+                mStorageRef.child(item.id + "." + imageFileExt).
+                        getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+//                        mImageView.setImageURI(uri);
+                        try {
+                            mImageView.setImageURI(uri);
+                            mImageView.setImageBitmap(BitmapFactory.decodeStream(new URL(uri.toString()).openConnection().getInputStream()));
+                        } catch (Exception e) {
+                            String msg = e.getMessage();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        String message = item.id+"." + imageFileExt + e.getMessage();
+                    }
+                });
+            }
 
             return view;
         }
