@@ -16,10 +16,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -40,6 +45,9 @@ import java.util.jar.Attributes;
 public class FragmentInventory extends Fragment {
 
     StorageReference mStorageRef;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference refs;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -89,12 +97,14 @@ public class FragmentInventory extends Fragment {
 
     ArrayList<String> keys;
     UserHelper currentUser;
+    boolean shouldDel = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inventory, container, false);
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        rootNode = FirebaseDatabase.getInstance();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -151,6 +161,40 @@ public class FragmentInventory extends Fragment {
             String imageFileExt = item.id.split("_").length > 1 ?
                     item.id.split("_")[1] : "";
             if (imageFileExt != "") {
+//                // update code testing //
+//                item.name = item.name + "update test";
+//                rootNode.getReference("users/"+Utility.getAuthenticatedUser().contactNumber+"/inventory")
+//                .child(item.id).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+//                        if(task.isSuccessful()){
+//
+//                        }
+//                    }
+//                });
+//                // update code testing ends successfully
+
+                // delete code testing
+//                if(shouldDel) {
+//                    shouldDel = false;
+//                    rootNode.getReference("users/"+Utility.getAuthenticatedUser().contactNumber+"/inventory")
+//                .child(item.id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+//                        if(task.isSuccessful()){
+//
+//
+//                        }
+//                        else {
+//                            String msg = task.getException().getMessage();
+//                        }
+//                    }
+//                });
+//                }
+//
+//                // delete testing ends successfully
+
+
                 mStorageRef.child(item.id + "." + imageFileExt).
                         getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override

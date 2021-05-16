@@ -67,7 +67,7 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rootNode = FirebaseDatabase.getInstance();
-                refs = rootNode.getReference("users/123456/inventory");
+                refs = rootNode.getReference("users/"+Utility.getAuthenticatedUser().contactNumber+"/inventory");
 
                 String nameVal, descVal;
                 Integer quantityVal, alertQVal, priceVal;
