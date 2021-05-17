@@ -140,11 +140,15 @@ public class FragmentWishlist extends Fragment {
 
             ImageView mImageView = view.findViewById(R.id.imageViewWishlist);
             TextView mTextView = view.findViewById(R.id.textView_Wishlist);
+            TextView mTextViewDesc = view.findViewById(R.id.textView_WishlistDesc);
+            TextView mTextViewQuantity = view.findViewById(R.id.textView_WishlistQuantity);
 
             //mImageView.setImageResource(images1.get(position));
             InventoryHelper item = currentUser.wishlist.get(keys.get(position));
             item.id = keys.get(position);
             mTextView.setText(item.name);
+            mTextViewDesc.setText(item.description);
+//            mTextViewQuantity.setText(item.quantity);
 
             //imgViewer.setImageURI(imgUri);
             String imageFileExt = item.id.split("_").length > 1 ?

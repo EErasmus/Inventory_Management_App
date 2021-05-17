@@ -67,7 +67,7 @@ public class WishlistHelper {
         this.description = description;
         this.quantity = quantity;
         this.price = price;
-        this.type = 1;
+        this.type = 2;
         this.id = id;
     }
 }

@@ -151,11 +151,24 @@ public class FragmentInventory extends Fragment {
 
             ImageView mImageView = view.findViewById(R.id.imageView4);
             TextView mTextView = view.findViewById(R.id.textView_Inv);
+            TextView mTextViewDesc = view.findViewById(R.id.textView_InvDesc);
+            TextView mTextViewPrice = view.findViewById(R.id.textView_InvPrice);
+
+            TextView mTextViewQuantity = view.findViewById(R.id.textView_InvQuantity);
 
             //mImageView.setImageResource(images1.get(position));
             InventoryHelper item = currentUser.inventory.get(keys.get(position));
             item.id = keys.get(position);
             mTextView.setText(item.name);
+            mTextViewDesc.setText(item.description);
+//            mTextViewPrice.setText(item.price);
+//
+//            try {
+//                mTextViewQuantity.setText(item.quantity);
+//
+//            } catch (Exception e) {
+//                String msg = e.getMessage();
+//            }
 
             //imgViewer.setImageURI(imgUri);
             String imageFileExt = item.id.split("_").length > 1 ?
