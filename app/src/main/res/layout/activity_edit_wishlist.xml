@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_2"
-    tools:context=".AddToWishlist">
+    tools:context=".EditWishlist">
+
 
     <EditText
         android:id="@+id/editTextTextPersonName11"
@@ -48,24 +49,44 @@
         app:layout_constraintVertical_bias="0.94" />
 
     <Button
-        android:id="@+id/loginBtnMainCont4"
-        android:layout_width="163dp"
+        android:id="@+id/editWishlistBtn"
+        android:layout_width="125dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="72dp"
         android:background="@drawable/button"
         android:fontFamily="sans-serif-light"
-        android:text="Add"
+        android:text="Update"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName14"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.042" />
+
+    <Button
+        android:id="@+id/deleteWishlistBtn"
+        android:layout_width="125dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="72dp"
+        android:background="@drawable/button"
+        android:fontFamily="sans-serif-light"
+        android:text="Delete"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName14"
+        app:layout_constraintVertical_bias="0.031" />
 
     <EditText
         android:id="@+id/editTextTextPersonName13"
@@ -117,7 +138,7 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditWishlist"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_thumbnail"
         tools:src="@drawable/ic_thumbnail"
@@ -125,13 +146,13 @@
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/textViewEditWishlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="Add To Wishlist"
+        android:text="Edit Wishlist"
         android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName11"

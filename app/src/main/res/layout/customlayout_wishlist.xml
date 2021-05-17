@@ -8,13 +8,39 @@
     android:background="@color/white">
 
 
+    <TextView
+        android:id="@+id/textView_WishlistQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageViewWishlist"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="160dp"
+        android:text="Quantity"
+        android:textColor="@color/gray"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_WishlistDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageViewWishlist"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="130dp"
+        android:text="Description"
+        android:textColor="@color/gray"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/imageViewWishlist"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="111dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="297dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,19 +53,26 @@
 
     <TextView
         android:id="@+id/textView_Wishlist"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/imageViewWishlist"
-        android:layout_alignBottom="@+id/imageViewWishlist"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="100dp"
+        android:text="Name"
+        android:textColor="@color/gray"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/editButtonWishlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginBottom="59dp"
-        android:text="name"
-        android:textColor="@color/gray"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        app:srcCompat="@drawable/ic_edit" />
 
 </RelativeLayout>
