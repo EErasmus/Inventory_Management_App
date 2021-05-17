@@ -1,5 +1,6 @@
 package com.example.inventorymanagementapp;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class FragmentInventory extends Fragment {
 
     FirebaseDatabase rootNode;
     DatabaseReference refs;
+    Intent intent;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -153,6 +156,8 @@ public class FragmentInventory extends Fragment {
             TextView mTextView = view.findViewById(R.id.textView_Inv);
             TextView mTextViewDesc = view.findViewById(R.id.textView_InvDesc);
             TextView mTextViewPrice = view.findViewById(R.id.textView_InvPrice);
+            ImageButton mEditBtn = view.findViewById(R.id.editButtonInventory);
+
 
             TextView mTextViewQuantity = view.findViewById(R.id.textView_InvQuantity);
 
@@ -161,14 +166,18 @@ public class FragmentInventory extends Fragment {
             item.id = keys.get(position);
             mTextView.setText(item.name);
             mTextViewDesc.setText(item.description);
-//            mTextViewPrice.setText(item.price);
-//
-//            try {
-//                mTextViewQuantity.setText(item.quantity);
-//
-//            } catch (Exception e) {
-//                String msg = e.getMessage();
-//            }
+            mTextViewPrice.setText(String.valueOf(item.price));
+            mTextViewQuantity.setText(String.valueOf(item.quantity));
+
+            mEditBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent = new Intent(getActivity(), EditItem.class);
+                    intent.putExtra("key", item.id);
+                    startActivity(intent);
+
+                }
+            });
 
             //imgViewer.setImageURI(imgUri);
             String imageFileExt = item.id.split("_").length > 1 ?

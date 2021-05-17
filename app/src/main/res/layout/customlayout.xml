@@ -29,7 +29,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="107dp"
         android:layout_marginTop="160dp"
-        android:text="Quantity"
+        android:text="Quantity Inv"
         android:textColor="@color/gray"
         android:textSize="20sp"
         android:textStyle="bold" />

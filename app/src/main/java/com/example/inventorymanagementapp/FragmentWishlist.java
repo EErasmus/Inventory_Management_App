@@ -148,7 +148,7 @@ public class FragmentWishlist extends Fragment {
             item.id = keys.get(position);
             mTextView.setText(item.name);
             mTextViewDesc.setText(item.description);
-//            mTextViewQuantity.setText(item.quantity);
+            mTextViewQuantity.setText(String.valueOf(item.quantity));
 
             //imgViewer.setImageURI(imgUri);
             String imageFileExt = item.id.split("_").length > 1 ?
