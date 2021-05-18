@@ -121,6 +121,8 @@ public class LoginActivity extends AppCompatActivity {
                         if(dataSnapshot.exists()){
                             String passwordFromDB = dataSnapshot.child(username).child("password").getValue(String.class);
                             UserHelper user = dataSnapshot.child(username).getValue(UserHelper.class);
+                            user.inventory.remove("01d97e60-67ba-46dc-8f13-da35ffa03314");
+                            user.wishlist.remove("01d97e60-67ba-46dc-8f13-da35ffa03314");
                             user.contactNumber = username;
                             Utility.setAuthenticatedUser(user);
                             if(passwordFromDB.equals(userpwd)){

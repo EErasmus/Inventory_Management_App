@@ -11,6 +11,12 @@ public class UserHelper {
         this.name = name;
         this.password = password;
         this.contactNumber = contact;
+        this.inventory = new HashMap<String, InventoryHelper>();
+        this.wishlist = new HashMap<String, WishlistHelper>();
+
+        this.inventory.put("01d97e60-67ba-46dc-8f13-da35ffa03314", new InventoryHelper("1","1",1,1,1,1,"1"));
+        this.wishlist.put("01d97e60-67ba-46dc-8f13-da35ffa03314", new WishlistHelper("1","1",1,1,1,1,"1"));
+
     }
 
     public String getName() {
@@ -40,7 +46,8 @@ public class UserHelper {
     String password;
     String contactNumber;
 
-    public HashMap<String, InventoryHelper> inventory, wishlist;
+    public HashMap<String, InventoryHelper> inventory;
+    public HashMap<String, WishlistHelper> wishlist;
 
     public HashMap<String, InventoryHelper> getInventory() {
         return inventory;
@@ -50,11 +57,11 @@ public class UserHelper {
         this.inventory = inventory;
     }
 
-    public HashMap<String, InventoryHelper> getWishlist() {
+    public HashMap<String, WishlistHelper> getWishlist() {
         return wishlist;
     }
 
-    public void setWishlist(HashMap<String, InventoryHelper> wishlist) {
+    public void setWishlist(HashMap<String, WishlistHelper> wishlist) {
         this.wishlist = wishlist;
     }
 }

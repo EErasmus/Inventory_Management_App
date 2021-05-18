@@ -148,7 +148,7 @@ public class FragmentWishlist extends Fragment {
             ImageButton mEditBtn = view.findViewById(R.id.editButtonWishlist);
 
             //mImageView.setImageResource(images1.get(position));
-            InventoryHelper item = currentUser.wishlist.get(keys.get(position));
+            WishlistHelper item = currentUser.wishlist.get(keys.get(position));
             item.id = keys.get(position);
             mTextView.setText(item.name);
             mTextViewDesc.setText(item.description);
