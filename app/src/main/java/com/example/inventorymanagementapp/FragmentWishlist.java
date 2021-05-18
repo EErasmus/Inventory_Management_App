@@ -1,5 +1,6 @@
 package com.example.inventorymanagementapp;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +41,7 @@ public class FragmentWishlist extends Fragment {
 
     FirebaseDatabase rootNode;
     DatabaseReference refs;
+    Intent intent;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -142,6 +145,7 @@ public class FragmentWishlist extends Fragment {
             TextView mTextView = view.findViewById(R.id.textView_Wishlist);
             TextView mTextViewDesc = view.findViewById(R.id.textView_WishlistDesc);
             TextView mTextViewQuantity = view.findViewById(R.id.textView_WishlistQuantity);
+            ImageButton mEditBtn = view.findViewById(R.id.editButtonWishlist);
 
             //mImageView.setImageResource(images1.get(position));
             InventoryHelper item = currentUser.wishlist.get(keys.get(position));
@@ -149,6 +153,16 @@ public class FragmentWishlist extends Fragment {
             mTextView.setText(item.name);
             mTextViewDesc.setText(item.description);
             mTextViewQuantity.setText(String.valueOf(item.quantity));
+
+            mEditBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent = new Intent(getActivity(), EditWishlist.class);
+                    intent.putExtra("key", item.id);
+                    startActivity(intent);
+
+                }
+            });
 
             //imgViewer.setImageURI(imgUri);
             String imageFileExt = item.id.split("_").length > 1 ?
