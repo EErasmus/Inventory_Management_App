@@ -130,10 +130,9 @@ public class EditItem extends AppCompatActivity {
                         }
                     }
                 });
+                Intent intent = new Intent(EditItem.this, MainContentActivity.class);
+                startActivity(intent);
             }
         });
-
         }
-
-
     }

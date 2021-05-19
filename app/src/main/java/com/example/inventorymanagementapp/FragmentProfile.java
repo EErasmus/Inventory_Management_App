@@ -1,5 +1,7 @@
 package com.example.inventorymanagementapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,7 +21,10 @@ import android.widget.TextView;
  */
 public class FragmentProfile extends Fragment {
 
-    TextView name, email, contact;
+    Button logoutButton;
+    Intent intent;
+
+    TextView email, contact;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,14 +72,24 @@ public class FragmentProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-        name = rootView.findViewById(R.id.textView11);
         email = rootView.findViewById(R.id.textView13);
         contact = rootView.findViewById(R.id.textView15);
         UserHelper curUser = Utility.getAuthenticatedUser();
-        name.setText(curUser.name);
         email.setText(curUser.name);
         contact.setText(curUser.contactNumber);
         // Inflate the layout for this fragment
+
+        Button b = (Button)rootView.findViewById(R.id.logoutBtn);
+        b.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
         return rootView;
     }
 }

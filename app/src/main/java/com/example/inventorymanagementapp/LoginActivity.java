@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText userEmail, userPassword;
     FirebaseDatabase rootNode;
     DatabaseReference refs;
+    private Activity rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,9 +142,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
-
-
             }
         });
+
     }
 }

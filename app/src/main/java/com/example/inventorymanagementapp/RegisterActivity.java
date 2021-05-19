@@ -3,6 +3,7 @@ package com.example.inventorymanagementapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -83,6 +84,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 UserHelper user = new UserHelper(userEmail.getText().toString(), userPassword.getText().toString(),userContact.getText().toString());
                 refs.child(userContact.getText().toString()).setValue(user);
+
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

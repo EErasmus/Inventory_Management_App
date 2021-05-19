@@ -3,6 +3,7 @@ package com.example.inventorymanagementapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -53,7 +54,7 @@ public class EditWishlist extends AppCompatActivity {
         rootNode = FirebaseDatabase.getInstance();
 
         currentUser = Utility.getAuthenticatedUser();
-        InventoryHelper item = currentUser.wishlist.get(getIntent().getStringExtra("key"));
+        WishlistHelper item = currentUser.wishlist.get(getIntent().getStringExtra("key"));
 
         name.setText(item.name);
         desc.setText(item.description);
@@ -91,7 +92,7 @@ public class EditWishlist extends AppCompatActivity {
                 descVal = desc.getText().toString();
                 quantityVal = Integer.parseInt(quantity.getText().toString());
                 priceVal = Integer.parseInt(price.getText().toString());
-                InventoryHelper wishlist = new InventoryHelper(nameVal, descVal, quantityVal, 1, priceVal,item.id);
+                WishlistHelper wishlist = new WishlistHelper(nameVal, descVal, quantityVal, priceVal,item.id);
                 currentUser.wishlist.put(item.id, wishlist);
 
                 rootNode.getReference("users/"+Utility.getAuthenticatedUser().contactNumber+"/wishlist")
@@ -124,6 +125,8 @@ public class EditWishlist extends AppCompatActivity {
                         }
                     }
                 });
+                Intent intent = new Intent(EditWishlist.this, MainContentActivity.class);
+                startActivity(intent);
             }
         });
 
