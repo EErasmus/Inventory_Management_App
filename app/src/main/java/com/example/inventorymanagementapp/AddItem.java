@@ -80,6 +80,7 @@ public class AddItem extends AppCompatActivity {
                 uniqueId += imgUri != null ? "_" + getFileExtension(imgUri) : "";
                 InventoryHelper inventory = new InventoryHelper(nameVal, descVal, quantityVal, 1, alertQVal, priceVal,uniqueId);
                 refs.child(uniqueId).setValue(inventory);
+                Utility.getAuthenticatedUser().inventory.put(inventory.id, inventory);
                 if (imgUri != null) {
                     mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
                     StorageReference fileReference = mStorageRef.child(uniqueId + "." + getFileExtension(imgUri));

@@ -78,6 +78,7 @@ public class AddToWishlist extends AppCompatActivity {
                 uniqueId += imgUri != null ? "_" + getFileExtension(imgUri) : "";
                 WishlistHelper wishlist = new WishlistHelper(nameVal, descVal, quantityVal, priceVal, uniqueId);
                 refs.child(uniqueId).setValue(wishlist);
+                Utility.getAuthenticatedUser().wishlist.put(wishlist.id, wishlist);
                 if (imgUri != null) {
                     mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
                     StorageReference fileReference = mStorageRef.child(uniqueId + "." + getFileExtension(imgUri));

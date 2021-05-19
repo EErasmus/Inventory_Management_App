@@ -105,7 +105,8 @@ public class EditWishlist extends AppCompatActivity {
                         }
                     }
                 });
-
+                Intent intent = new Intent(EditWishlist.this, MainContentActivity.class);
+                startActivity(intent);
             }
         });
 
